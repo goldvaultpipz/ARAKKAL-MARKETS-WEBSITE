@@ -8,8 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Set Montserrat as the default Tailwind font-sans */
+  --font-sans: var(--font-montserrat), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +23,17 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Fixed: Changed this to use your Montserrat setup */
+  font-family: var(--font-sans);
+}
+
+/* Add this to the bottom of app/globals.css */
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 80s linear infinite;
 }
