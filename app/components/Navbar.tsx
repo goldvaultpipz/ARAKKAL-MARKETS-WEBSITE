@@ -190,22 +190,22 @@ const navLinks = [
   { name: "About", href: "/about-us" },
   { name: "Trading", href: "/account-type" },
   { name: "Platform", href: "/metatrader-5" },
-  { 
-    name: "Partnership", 
+  {
+    name: "Partnership",
     href: "/partnership",
     subLinks: [
       { name: "Introducing Broker", href: "/ib-program" }
     ]
   },
-  { 
-    name: "Products", 
+  {
+    name: "Products",
     href: "/products",
     subLinks: [
       { name: "CFDs", href: "/cfds" },
       { name: "Metals", href: "/metals" }
     ]
   },
-  { name: "Contact Us", href: "/contact" },
+  { name: "Contact Us", href: "/contact-us" },
 ];
 
 export default function Navbar() {
@@ -215,21 +215,22 @@ export default function Navbar() {
   return (
     <div className="absolute top-6 left-0 z-50 w-full px-4 sm:px-6 lg:px-8">
       {/* Main Navbar Bar - Simple Fade In */}
-      <motion.nav 
+      <motion.nav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-6 py-2.5 backdrop-blur-lg shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors hover:bg-white/10"
       >
-        
+
+        {/* Logo */}
         {/* Logo */}
         <Link href="/" className="flex items-center transition-opacity hover:opacity-90">
-          <Image 
-            src="/images/logonew.png" 
-            alt="Arakkal Markets Logo" 
-            width={120} 
-            height={120} 
-            className="h-9 w-auto sm:h-11 object-contain"
+          <Image
+            src="/images/ARAKKALLOGO.png"
+            alt="Arakkal Markets Logo"
+            width={160}
+            height={160}
+            className="h-12 w-auto sm:h-16 object-contain"
             priority
           />
         </Link>
@@ -237,8 +238,8 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden lg:flex lg:items-center lg:space-x-8">
           {navLinks.map((link) => (
-            <div 
-              key={link.name} 
+            <div
+              key={link.name}
               className="relative"
               onMouseEnter={() => setHoveredMenu(link.name)}
               onMouseLeave={() => setHoveredMenu(null)}
@@ -249,13 +250,13 @@ export default function Navbar() {
               >
                 {link.name}
                 {link.subLinks && (
-                  <motion.svg 
+                  <motion.svg
                     animate={{ rotate: hoveredMenu === link.name ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
-                    className={`h-3 w-3 ${hoveredMenu === link.name ? 'text-[#FF4500]' : 'text-gray-400'}`} 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
+                    className={`h-3 w-3 ${hoveredMenu === link.name ? 'text-[#FF4500]' : 'text-gray-400'}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                     strokeWidth={2.5}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -266,7 +267,7 @@ export default function Navbar() {
               {/* Desktop Submenu - Simple Fade In */}
               <AnimatePresence>
                 {hoveredMenu === link.name && link.subLinks && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -295,8 +296,8 @@ export default function Navbar() {
 
         {/* Desktop Right - Sign Up */}
         <div className="hidden lg:flex lg:items-center">
-          <Link
-            href="/signup"
+          <a
+            href="https://portal.arakkalmarkets.com/register"
             className="group flex items-center gap-2 rounded-xl bg-[#FF4500] px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#E03E00] hover:shadow-[#FF4500]/20"
           >
             <svg
@@ -308,7 +309,7 @@ export default function Navbar() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
             Sign up
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -317,10 +318,10 @@ export default function Navbar() {
           className="rounded-lg p-2 text-gray-300 transition-colors hover:bg-white/10 hover:text-white lg:hidden focus:outline-none"
           aria-label="Toggle menu"
         >
-          <svg 
-            className="h-6 w-6" 
-            fill="none" 
-            stroke="currentColor" 
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
           >
             {isOpen ? (
@@ -335,7 +336,7 @@ export default function Navbar() {
       {/* Mobile Dropdown Menu - Simple Fade In */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -352,7 +353,7 @@ export default function Navbar() {
                   >
                     {link.name}
                   </Link>
-                  
+
                   {/* Mobile Sub-links */}
                   {link.subLinks && (
                     <div className="ml-6 mt-1 flex flex-col space-y-1 border-l border-white/10 pl-4">
@@ -370,10 +371,10 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
-              
+
               <div className="pt-4 mt-2 border-t border-white/10">
-                <Link
-                  href="/signup"
+                <a
+                  href="https://portal.arakkalmarkets.com/register"
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#FF4500] px-4 py-3.5 text-base font-semibold text-white shadow-lg transition-colors hover:bg-[#E03E00]"
                   onClick={() => setIsOpen(false)}
                 >
@@ -381,7 +382,7 @@ export default function Navbar() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                   Sign up
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

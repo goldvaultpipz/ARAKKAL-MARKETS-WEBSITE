@@ -43,13 +43,13 @@ export default function CFDsPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] selection:bg-[#FF4500]/30 selection:text-white pt-24 pb-20">
-      
+
       {/* 1. Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-16 z-30">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#FF4500]/5 rounded-full blur-[150px] pointer-events-none"></div>
-        
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
+          <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -58,11 +58,11 @@ export default function CFDsPage() {
             <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm mb-6">
               <span className="text-[#FF4500]">✦</span> Contracts for Difference
             </div>
-            
+
             <h1 className="text-5xl font-normal tracking-tight lg:text-7xl text-white mb-6">
               Trade <span className="text-[#FF4500]">CFDs</span>
             </h1>
-            
+
             <p className="text-base text-gray-400 lg:text-lg leading-relaxed mb-4">
               Contract for difference (CFD) is a contract that reflects the performance of the underlying index futures with the profit or loss calculated as the difference between the purchase price and the sale price.
             </p>
@@ -77,7 +77,7 @@ export default function CFDsPage() {
       <section className="py-12 relative z-30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+
             {[
               {
                 title: "Market Direction",
@@ -107,11 +107,11 @@ export default function CFDsPage() {
             ].map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <motion.div 
+                <motion.div
                   key={index}
-                  initial={{ y: 40, opacity: 0 }} 
-                  whileInView={{ y: 0, opacity: 1 }} 
-                  viewport={{ once: true }} 
+                  initial={{ y: 40, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-[#FF4500]/30"
                 >
@@ -145,7 +145,7 @@ export default function CFDsPage() {
                 <p className="text-gray-400 text-sm mt-1">Metal Tradable from Gold and Silver major metal CFDs.</p>
               </div>
             </div>
-            
+
             <div className="overflow-x-auto rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl">
               <table className="w-full text-left text-sm text-gray-300 min-w-[800px]">
                 <thead className="border-b border-white/10 bg-black/40 text-white font-medium uppercase tracking-wider text-xs">
@@ -189,7 +189,7 @@ export default function CFDsPage() {
                 <p className="text-gray-400 text-sm mt-1">WTI and Brent Crude major trading classification.</p>
               </div>
             </div>
-            
+
             <div className="overflow-x-auto rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl">
               <table className="w-full text-left text-sm text-gray-300 min-w-[800px]">
                 <thead className="border-b border-white/10 bg-black/40 text-white font-medium uppercase tracking-wider text-xs">
@@ -233,7 +233,7 @@ export default function CFDsPage() {
                 <p className="text-gray-400 text-sm mt-1">Tradable from some of the major index CFDs globally.</p>
               </div>
             </div>
-            
+
             <div className="overflow-x-auto rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl">
               <table className="w-full text-left text-sm text-gray-300 min-w-[900px]">
                 <thead className="border-b border-white/10 bg-black/40 text-white font-medium uppercase tracking-wider text-xs">
@@ -272,7 +272,7 @@ export default function CFDsPage() {
       {/* 4. Global CTA Section */}
       <section className="py-20 relative z-30 pb-32 mt-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
@@ -285,7 +285,7 @@ export default function CFDsPage() {
               fill
               className="object-cover opacity-80"
             />
-            <motion.div 
+            <motion.div
               initial={{ y: "100%" }}
               whileInView={{ y: "33.333%" }}
               viewport={{ once: true }}
@@ -300,32 +300,39 @@ export default function CFDsPage() {
                 className="mx-auto h-auto w-[150%] max-w-none md:w-full opacity-60"
               />
             </motion.div>
-            
+
             <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center text-center px-6">
-              <motion.h2 
+              <motion.h2
                 initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-5xl font-normal tracking-tight lg:text-6xl text-white"
               >
                 Start Your Trading <span className="text-[#FF4500]">Journey Today</span>
               </motion.h2>
-              <motion.p 
+              <motion.p
                 initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-6 text-base text-gray-400 lg:text-lg"
               >
                 Open an account today and experience our premium execution, <br className="hidden sm:block" />
                 tight spreads, and world-class trading environment.
               </motion.p>
-              <motion.div 
+              <motion.div
                 initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}
                 className="mt-10 flex w-full max-w-sm flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row"
               >
-                <button className="group w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto inline-flex justify-center items-center gap-2">
+                <a
+                  href="https://portal.arakkalmarkets.com/register"
+                  className="group w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto inline-flex justify-center items-center gap-2"
+                >
                   Open Live Account
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
-                <button className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto">
+                </a>
+
+                <a
+                  href="https://portal.arakkalmarkets.com/opendemoaccount"
+                  className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-center text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto block sm:inline-block"
+                >
                   Try Demo Account
-                </button>
+                </a>
               </motion.div>
             </div>
           </motion.div>

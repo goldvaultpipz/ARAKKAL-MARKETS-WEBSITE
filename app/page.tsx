@@ -896,22 +896,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative w-full z-30 my-12">
+      
+      <section className="relative w-full z-30 my-12 bg-[#0a0a0a]">
         <motion.div
           // 1. Change animation to simple bottom to top slide-in
           initial={{ y: 60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }} // animated when 30% in view
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} // Smooth cubic-bezier ease-out
-          // 2. Add black shadow to image edges via the wrapping div
-          className="w-full"
+          // 2. Center the image horizontally
+          className="w-full flex justify-center items-center px-4"
         >
           <Image
-            src="/images/META TRADER MOCKUP 2.png"
+            src="/images/METATRADERMOCKUP1.png"
             alt="MetaTrader Mockup"
             width={2560}
             height={1440}
-            className="w-full h-auto block"
+            // 3. Prevent infinite stretching on ultra-wide screens while keeping it responsive
+            className="w-full max-w-7xl h-auto block mx-auto object-contain"
           />
         </motion.div>
       </section>
@@ -1308,22 +1310,23 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section className="relative w-full z-30 my-12">
+      <section className="relative w-full z-30 my-12 bg-[#0a0a0a]">
         <motion.div
           // 1. Change animation to simple bottom to top slide-in
           initial={{ y: 60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }} // animated when 30% in view
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} // Smooth cubic-bezier ease-out
-          // 2. Add black shadow to image edges via the wrapping div
-          className="w-full"
+          // 2. Center the image horizontally
+          className="w-full flex justify-center items-center px-4"
         >
           <Image
-            src="/images/META TRADER MOCKUP 1.png"
+            src="/images/METATRADERMOCKUP2.png"
             alt="MetaTrader Mockup"
             width={2560}
             height={1440}
-            className="w-full h-auto block"
+            // 3. Prevent infinite stretching on ultra-wide screens while keeping it responsive
+            className="w-full max-w-7xl h-auto block mx-auto object-contain"
           />
         </motion.div>
       </section>
