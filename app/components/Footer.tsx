@@ -40,11 +40,11 @@ export default function Footer() {
             {/* Logo Only */}
             <Link href="/" className="inline-block mb-4">
               <Image
-                src="/images/ARAKKALLOGO.png"
+                src="/images/footer.png"
                 alt="Arakkal Markets Logo"
-                width={160}
-                height={160}
-                className="h-14 w-auto object-contain"
+                width={256}
+                height={256}
+                className="h-24 w-auto object-contain"
               />
             </Link>
             <p className="text-sm text-gray-400 max-w-xs mb-5 leading-relaxed">

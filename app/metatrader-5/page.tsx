@@ -3,8 +3,13 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Monitor, Apple, Smartphone, CheckCircle2, Download, ArrowRight } from "lucide-react";
+import MagicRings from "../components/MagicRings";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function MetaTraderPage() {
+
+  const isMobile = useIsMobile();
+  
   return (
     <main className="min-h-screen bg-[#0a0a0a] selection:bg-[#FF4500]/30 selection:text-white pt-24 pb-20">
 
@@ -172,6 +177,7 @@ export default function MetaTraderPage() {
       </section>
 
       {/* 2. Global CTA Section */}
+      {/* 2. Global CTA Section */}
       <section className="py-20 relative z-30 pb-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -179,29 +185,37 @@ export default function MetaTraderPage() {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#191717] py-24 shadow-2xl"
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0d0d0d] py-24 shadow-2xl"
           >
-            <Image
-              src="/images/6752871d92d2860c7fca47cf_lightsbg.webp"
-              alt="Stars background"
-              fill
-              className="object-cover opacity-80"
-            />
-            <motion.div
-              initial={{ y: "100%" }}
-              whileInView={{ y: "33.333%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute bottom-0 left-1/2 z-10 w-full -translate-x-1/2 md:translate-y-1/2"
-            >
-              <Image
-                src="/images/675652b827df88bb5eb52b72_moonv2.webp"
-                alt="Moon horizon"
-                width={1600}
-                height={800}
-                className="mx-auto h-auto w-[150%] max-w-none md:w-full opacity-60"
+            {/* MagicRings Background — full bleed behind content */}
+            <div className="absolute inset-0 z-0">
+              <MagicRings
+                color="#A855F7"
+                colorTwo="#6366F1"
+                ringCount={6}
+                speed={1}
+                attenuation={10}
+                lineThickness={2}
+                baseRadius={0.5}
+                radiusStep={0.1}
+                scaleRate={0.1}
+                opacity={1}
+                blur={0}
+                noiseAmount={0.1}
+                rotation={isMobile ? 90 : 0} // Uses the hook here!
+                ringGap={1.5}
+                fadeIn={0.7}
+                fadeOut={0.5}
+                followMouse={false}
+                mouseInfluence={0.2}
+                hoverScale={1.2}
+                parallax={0.05}
+                clickBurst={false}
               />
-            </motion.div>
+            </div>
+
+            {/* Subtle dark vignette so text stays readable */}
+            <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.75)_100%)]" />
 
             <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center text-center px-6">
               <motion.h2

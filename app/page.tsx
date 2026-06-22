@@ -499,8 +499,21 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Activity, ArrowRight, Award, Coins, Scale, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
 import Link from "next/link";
+import SoftAurora from "./components/SoftAurora";
+import MagicRings from "./components/MagicRings";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] selection:bg-[#FF4500]/30 selection:text-white">
 
@@ -538,6 +551,31 @@ export default function Home() {
             priority
           />
         </motion.div>
+
+        {/* <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute bottom-0 left-0 z-20 w-full"
+          style={{ height: "50vh", pointerEvents: "none" }}
+        >
+          <SoftAurora
+            speed={0.6}
+            scale={1.5}
+            brightness={1}
+            color1="#f7f7f7"
+            color2="#e100ff"
+            noiseFrequency={2.5}
+            noiseAmplitude={1}
+            bandHeight={0.3}
+            bandSpread={1}
+            octaveDecay={0.1}
+            layerOffset={0}
+            colorSpeed={1}
+            enableMouseInteraction
+            mouseInfluence={0.25}
+          />
+        </motion.div> */}
 
         {/* Hero Content - Staggered Slide Up */}
         <div className="relative z-30 flex h-full flex-col items-center justify-center space-y-6 px-4 pt-32 text-center text-white pb-20 md:pt-0">
@@ -686,7 +724,7 @@ export default function Home() {
       </motion.div>
 
       {/* 3. Learn About Us Section */}
-      <section className="py-24 relative z-30 overflow-hidden">
+      <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#FF4500]/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 -translate-x-1/2"></div>
 
@@ -809,7 +847,7 @@ export default function Home() {
       </section>
 
       {/* 3 Our Focus Section (Asymmetric Split Layout) */}
-      <section className="py-24 relative z-30 overflow-hidden">
+      <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
         {/* Subtle background glow for this specific section */}
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#FF4500]/5 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -896,7 +934,7 @@ export default function Home() {
         </div>
       </section>
 
-      
+
       <section className="relative w-full z-30 my-12 bg-[#0a0a0a]">
         <motion.div
           // 1. Change animation to simple bottom to top slide-in
@@ -908,7 +946,7 @@ export default function Home() {
           className="w-full flex justify-center items-center px-4"
         >
           <Image
-            src="/images/METATRADERMOCKUP1.png"
+            src="/images/METATRADERMOCKUP-1.png"
             alt="MetaTrader Mockup"
             width={2560}
             height={1440}
@@ -919,7 +957,7 @@ export default function Home() {
       </section>
 
       {/* 4. Key Features Section */}
-      <section className="py-24 relative z-30 overflow-hidden">
+      <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
         {/* Optional subtle background glow behind the grid */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF4500]/5 rounded-full blur-[150px] pointer-events-none"></div>
 
@@ -1099,7 +1137,7 @@ export default function Home() {
       </section>
 
       {/* 5. Why People Choose Us Section (Editorial List UI with Lucide Icons) */}
-      <section className="py-24 relative z-30 overflow-hidden">
+      <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FF4500]/5 rounded-full blur-[150px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
 
@@ -1321,7 +1359,7 @@ export default function Home() {
           className="w-full flex justify-center items-center px-4"
         >
           <Image
-            src="/images/METATRADERMOCKUP2.png"
+            src="/images/METATRADERMOCKUP-2.png"
             alt="MetaTrader Mockup"
             width={2560}
             height={1440}
@@ -1332,51 +1370,71 @@ export default function Home() {
       </section>
 
       {/* 7. CTA Section */}
-      <section className="py-20 relative z-30 pb-32">
+      <section className="py-12 sm:py-20 relative z-30 pb-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#191717] py-24 shadow-2xl"
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0d0d0d] py-24 shadow-2xl"
           >
-            <Image
-              src="/images/6752871d92d2860c7fca47cf_lightsbg.webp"
-              alt="Stars background"
-              fill
-              className="object-cover opacity-80"
-            />
-            <motion.div
-              initial={{ y: "100%" }}
-              whileInView={{ y: "33.333%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute bottom-0 left-1/2 z-10 w-full -translate-x-1/2 md:translate-y-1/2"
-            >
-              <Image
-                src="/images/675652b827df88bb5eb52b72_moonv2.webp"
-                alt="Moon horizon"
-                width={1600}
-                height={800}
-                className="mx-auto h-auto w-[150%] max-w-none md:w-full"
-              />
-            </motion.div>
 
+            {/* MagicRings Background — full bleed behind content */}
+            <div className="absolute inset-0 z-0">
+              <MagicRings
+                color="#A855F7"
+                colorTwo="#6366F1"
+                ringCount={6}
+                speed={1}
+                attenuation={10}
+                lineThickness={2}
+                baseRadius={0.5}
+                radiusStep={0.1}
+                scaleRate={0.1}
+                opacity={1}
+                blur={0}
+                noiseAmount={0.1}
+                rotation={isMobile ? 90 : 0}
+                ringGap={1.5}
+                fadeIn={0.7}
+                fadeOut={0.5}
+                followMouse={false}
+                mouseInfluence={0.2}
+                hoverScale={1.2}
+                parallax={0.05}
+                clickBurst={false}
+              />
+            </div>
+
+            {/* Subtle dark vignette so text stays readable */}
+            <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.75)_100%)]" />
+
+            {/* Content */}
             <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center text-center px-6">
               <motion.h2
-                initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-5xl font-normal tracking-tight lg:text-6xl text-white"
               >
-                Start Your Trading <span className="text-[#FF4500]">Journey Today</span>
+                Start Your Trading{" "}
+                <span className="text-[#FF4500]">Journey Today</span>
               </motion.h2>
+
               <motion.p
-                initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-6 text-base text-gray-400 lg:text-lg"
               >
-                Open an account today and experience our premium execution, <br className="hidden sm:block" />
+                Open an account today and experience our premium execution,{" "}
+                <br className="hidden sm:block" />
                 tight spreads, and world-class trading environment.
               </motion.p>
+
               <motion.div
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -1390,7 +1448,6 @@ export default function Home() {
                 >
                   Open Live Account
                 </Link>
-
                 <Link
                   href="https://portal.arakkalmarkets.com/opendemoaccount"
                   className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-center text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
@@ -1399,6 +1456,7 @@ export default function Home() {
                 </Link>
               </motion.div>
             </div>
+
           </motion.div>
         </div>
       </section>
