@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Monitor, Apple, Smartphone, CheckCircle2, Download, ArrowRight } from "lucide-react";
 import MagicRings from "../components/MagicRings";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { FaAndroid, FaApple, FaDownload, FaGooglePlay, FaWindows } from "react-icons/fa";
 
 export default function MetaTraderPage() {
 
@@ -40,6 +41,7 @@ export default function MetaTraderPage() {
           </motion.div>
 
           {/* 3-Column Platforms Grid */}
+          {/* 3-Column Platforms Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
             {/* Windows Platform */}
@@ -51,7 +53,7 @@ export default function MetaTraderPage() {
               className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-[#FF4500]/30"
             >
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-black/40 border border-white/5 text-white transition-colors group-hover:text-[#FF4500]">
-                <Monitor className="h-8 w-8" />
+                <FaWindows className="h-8 w-8" />
               </div>
 
               <h3 className="mb-2 text-2xl font-medium text-white">MT5 for Windows</h3>
@@ -80,7 +82,7 @@ export default function MetaTraderPage() {
                 download
                 className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[#FF4500] px-8 py-4 text-base font-semibold text-white shadow-lg transition-transform hover:scale-[1.02] hover:bg-[#E03E00] mt-auto"
               >
-                <Download className="h-5 w-5" />
+                <FaDownload className="h-5 w-5" />
                 Download MT5
               </a>
             </motion.div>
@@ -94,7 +96,7 @@ export default function MetaTraderPage() {
               className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-[#FF4500]/30"
             >
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-black/40 border border-white/5 text-white transition-colors group-hover:text-[#FF4500]">
-                <Apple className="h-8 w-8" />
+                <FaApple className="h-8 w-8" />
               </div>
 
               <h3 className="mb-2 text-2xl font-medium text-white">MT5 for iOS</h3>
@@ -123,7 +125,7 @@ export default function MetaTraderPage() {
                 href="https://apps.apple.com/us/app/metatrader-5/id413251709"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-black/40 px-8 py-4 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/30 mt-auto"
               >
-                <Apple className="h-5 w-5" />
+                <FaApple className="h-5 w-5" />
                 App Store
               </a>
             </motion.div>
@@ -137,7 +139,7 @@ export default function MetaTraderPage() {
               className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-[#FF4500]/30"
             >
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-black/40 border border-white/5 text-white transition-colors group-hover:text-[#FF4500]">
-                <Smartphone className="h-8 w-8" />
+                <FaAndroid className="h-8 w-8" />
               </div>
 
               <h3 className="mb-2 text-2xl font-medium text-white">MT5 for Android</h3>
@@ -165,9 +167,7 @@ export default function MetaTraderPage() {
                 href="https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5&hl=en&referrer=ref_id%3d5188148738187528045%26server%3dArakkalMarkets-Server"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-black/40 px-8 py-4 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/30 mt-auto"
               >
-                <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M17.523 15.3414c-.055.1205-.1455.211-.266.266L12 18.2324l-5.257-2.625c-.1205-.055-.211-.1455-.266-.266L4.764 9.1704c-.055-.1205-.055-.266 0-.3865l1.713-6.171c.055-.1205.1455-.211.266-.266L12 1.0964l5.257 1.2505c.1205.055.211.1455.266.266l1.713 6.171c.055.1205.055.266 0 .3865l-1.713 6.171zM12 2.3464l-4.525 1.077-1.475 5.31 4.525 2.263L12 2.3464zm.75 8.65L17.275 8.733l-1.475-5.31L12.75 2.346v8.65zm-.75 1.28L7.475 9.923l-1.475 5.31 5.25 2.625V12.276zm.75 0v5.582l5.25-2.625-1.475-5.31-3.775 2.353z" />
-                </svg>
+                <FaGooglePlay className="h-5 w-5" />
                 Google Play
               </a>
             </motion.div>

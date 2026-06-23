@@ -200,6 +200,23 @@ export default function AboutPage() {
 
             {/* Content */}
             <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center text-center px-6">
+
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-6"
+              >
+                <Image
+                  src="/images/mt5.webp"
+                  alt="MetaTrader 5 Logo"
+                  width={96}
+                  height={96}
+                  className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-2xl drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] "
+                />
+              </motion.div>
+
               <motion.h2
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}

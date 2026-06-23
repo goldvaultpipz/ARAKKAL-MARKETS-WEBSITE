@@ -254,41 +254,65 @@ export default function AccountTypePage() {
 
             {/* Content */}
             <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center text-center px-6">
-              <motion.h2
-                initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-5xl font-normal tracking-tight lg:text-6xl text-white uppercase"
-              >
-                MetaTrader 5
-              </motion.h2>
+              
+  {/* MT5 Logo added here */}
+  <motion.div
+    initial={{ y: 30, opacity: 0 }}
+    whileInView={{ y: 0, opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay: 0.1 }}
+    className="mb-6"
+  >
+    <Image
+      src="/images/mt5.webp"
+      alt="MetaTrader 5 Logo"
+      width={96}
+      height={96}
+      className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-2xl drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+    />
+  </motion.div>
 
-              <motion.p
-                initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-6 text-base text-gray-400 lg:text-lg"
-              >
-                Arakkal Markets provides you with the world-renown MetaTrader 5. Available on all major platforms, you can trade from anywhere at any time.
-              </motion.p>
+  <motion.h2
+    initial={{ y: 30, opacity: 0 }} 
+    whileInView={{ y: 0, opacity: 1 }} 
+    viewport={{ once: true }} 
+    transition={{ duration: 0.6, delay: 0.2 }}
+    className="text-5xl font-normal tracking-tight lg:text-6xl text-white uppercase"
+  >
+    MetaTrader 5
+  </motion.h2>
 
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-10 flex w-full max-w-sm flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row"
-              >
-                <a
-                  href="https://portal.arakkalmarkets.com/register"
-                  className="w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto"
-                >
-                  Open Live Account
-                </a>
-                <a
-                  href="https://portal.arakkalmarkets.com/opendemoaccount"
-                  className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-center text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
-                >
-                  Open Demo Account
-                </a>
-              </motion.div>
-            </div>
+  <motion.p
+    initial={{ y: 30, opacity: 0 }} 
+    whileInView={{ y: 0, opacity: 1 }} 
+    viewport={{ once: true }} 
+    transition={{ duration: 0.6, delay: 0.3 }}
+    className="mt-6 text-base text-gray-400 lg:text-lg"
+  >
+    Arakkal Markets provides you with the world-renown MetaTrader 5. Available on all major platforms, you can trade from anywhere at any time.
+  </motion.p>
+
+  <motion.div
+    initial={{ y: 30, opacity: 0 }}
+    whileInView={{ y: 0, opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay: 0.4 }}
+    className="mt-10 flex w-full max-w-sm flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row"
+  >
+    <a
+      href="https://portal.arakkalmarkets.com/register"
+      className="w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto"
+    >
+      Open Live Account
+    </a>
+    <a
+      href="https://portal.arakkalmarkets.com/opendemoaccount"
+      className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-center text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
+    >
+      Open Demo Account
+    </a>
+  </motion.div>
+</div>
           </motion.div>
         </div>
       </section>
