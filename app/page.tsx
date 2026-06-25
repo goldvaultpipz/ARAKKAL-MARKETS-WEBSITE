@@ -4,9 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Activity, ArrowRight, Award, Coins, Scale, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
 import Link from "next/link";
-import SoftAurora from "./components/SoftAurora";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import TradingViewWidget from "./components/TradingViewWidget";
+import TickerTapeWidget from "./components/TickerTapeWidget";
 
 const MagicRings = dynamic(() => import("./components/MagicRings"), { ssr: false });
 
@@ -25,8 +26,9 @@ export default function Home() {
     <main className="min-h-screen bg-[#0a0a0a] selection:bg-[#FF4500]/30 selection:text-white">
 
       {/* 1. Hero Section */}
-      <section className="relative h-screen w-full overflow-hidden">
-        {/* Background Image - Simple Fade In */}
+      <section className="relative w-full overflow-hidden pt-12">   {/* Changed to min-h-screen */}
+
+        {/* Background Image */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -43,104 +45,105 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* Bottom Moon Image - Slide Up from Bottom */}
-        <motion.div
-          initial={{ y: "100%", opacity: 0 }}
-          animate={{ y: "33.333%", opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-0 left-1/2 z-20 w-full -translate-x-1/2"
-        >
-          <Image
-            src="/images/675652b827df88bb5eb52b72_moonv2.webp"
-            alt="Bottom image"
-            width={2000}
-            height={1000}
-            sizes="(max-width: 768px) 100vw, 2000px"
-            className="mx-auto h-auto w-[90vw] max-w-none"
-            priority
-          />
-        </motion.div>
+        {/* Hero Content */}
+        <div className="relative z-30 flex h-full flex-col lg:flex-row items-start lg:items-center max-w-7xl mx-auto gap-8 lg:gap-12 pt-20 pb-12 px-4 sm:px-6 lg:px-8">
 
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-0 left-0 z-20 w-full"
-          style={{ height: "50vh", pointerEvents: "none" }}
-        >
-          <SoftAurora
-            speed={0.6}
-            scale={1.5}
-            brightness={1}
-            color1="#f7f7f7"
-            color2="#e100ff"
-            noiseFrequency={2.5}
-            noiseAmplitude={1}
-            bandHeight={0.3}
-            bandSpread={1}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction
-            mouseInfluence={0.25}
-          />
-        </motion.div> */}
+          {/* Left: Text Content */}
+          <div className="flex flex-col items-start text-left text-white w-full lg:w-1/2 space-y-6 lg:pt-12">
+            <motion.div
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm"
+            >
+              <span className="text-[#FF4500]">⚡</span> Premium Trading Platform
+            </motion.div>
 
-        {/* Hero Content - Staggered Slide Up */}
-        <div className="relative z-30 flex h-full flex-col items-center justify-center space-y-6 px-4 pt-32 text-center text-white pb-20 md:pt-0">
+            <motion.h1
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+              className="text-5xl font-normal tracking-tight lg:text-6xl"
+            >
+              The Ultimate <br />
+              <span className="text-[#FF4500]">Gold Trading Resource</span>
+            </motion.h1>
 
-          {/* Tag/Badge */}
+            <motion.p
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+              className="max-w-lg text-base text-gray-400 lg:text-lg"
+            >
+              Unlock the full potential of your investments with real-time market data, advanced charting, and expert execution.
+            </motion.p>
+
+            <motion.div
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
+              className="flex w-full max-w-sm flex-col items-start gap-4 sm:max-w-none sm:flex-row"
+            >
+              <a
+                href="https://portal.arakkalmarkets.com/register"
+                className="w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto text-center"
+              >
+                Open Live Account
+              </a>
+              <a
+                href="https://portal.arakkalmarkets.com/opendemoaccount"
+                className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto text-center"
+              >
+                Try Demo Account
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Desktop Widget */}
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm"
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.8,
+              ease: "easeOut",
+            }}
+            className="hidden lg:block lg:absolute lg:right-0 h-[420px] overflow-hidden"
+            style={{
+              width: "calc(50% + 0px)",
+              mixBlendMode: "lighten",
+            }}
           >
-            <span className="text-[#FF4500]">⚡</span> Premium Trading Platform
+            <TradingViewWidget />
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1
+          {/* Mobile Widget - Fully Visible */}
+          <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-            className="text-5xl font-normal tracking-tight lg:text-6xl"
+            transition={{ duration: 0.9, delay: 0.8, ease: "easeOut" }}
+            className="lg:hidden w-full mt-6"
           >
-            The Ultimate <br />
-            <span className="text-[#FF4500]">Gold Trading Resource</span>
-          </motion.h1>
-
-          {/* Description */}
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-            className="mx-auto max-w-2xl text-base text-gray-400 lg:text-lg px-2"
-          >
-            Unlock the full potential of your investments with real-time market data, advanced charting, and expert execution.
-          </motion.p>
-
-          {/* Buttons */}
-          {/* Buttons */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
-            className="flex w-full max-w-sm flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row"
-          >
-            <a
-              href="https://portal.arakkalmarkets.com/register"
-              className="w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto text-center"
+            <div
+              className="w-full overflow-hidden rounded-2xl"
+              style={{
+                mixBlendMode: "lighten",
+                height: "360px",        // Slightly reduced but safe
+                maxHeight: "420px"
+              }}
             >
-              Open Live Account
-            </a>
-            <a
-              href="https://portal.arakkalmarkets.com/opendemoaccount"
-              className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto text-center"
-            >
-              Try Demo Account
-            </a>
+              <TradingViewWidget />
+            </div>
           </motion.div>
+
+        </div>
+      </section>
+
+      {/* === TICKER WIDGET AFTER HERO === */}
+      {/* === FULL WIDTH TRANSPARENT TICKER - NO OVERFLOW === */}
+      <section className="relative z-30 bg-[#0a0a0a] border-b border-white/10 overflow-hidden">
+        <div className="max-w-[100vw] w-screen">
+          <TickerTapeWidget />
         </div>
       </section>
 
@@ -760,118 +763,6 @@ export default function Home() {
 
         </div>
       </section>
-
-
-
-      {/* 6. Templates Showcase Section */}
-      {/* <section className="py-20 relative z-30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ y: 40, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <span className="text-[#FF4500]">✦</span> Control Your Task
-            </div>
-            <h2 className="mt-8 text-5xl font-normal tracking-tight lg:text-6xl text-white">
-              Ready-to-use templates for <br />
-              <span className="text-[#FF4500]">streamlined sales</span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-base text-gray-400 lg:text-lg">
-              Use our Performance Review Report template to present detailed <br className="hidden sm:block" />
-              analytics and evaluate key business metrics effectively
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <motion.div
-              initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-              className="group flex flex-col"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg transition-all group-hover:scale-[1.02] group-hover:bg-white/10 group-hover:border-white/20 p-6">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#FF4500]/10 opacity-20"></div>
-                <div className="relative z-10 flex items-center gap-4">
-                  <div className="text-3xl font-bold text-white">4k</div>
-                  <div className="rounded border border-green-500/20 bg-green-500/10 px-2 py-0.5 text-xs font-semibold text-green-500">↑ 12%</div>
-                </div>
-                <div className="relative z-10 mt-6 rounded-xl border border-white/10 bg-[#1a1a1a] p-4 shadow-2xl w-4/5 mx-auto backdrop-blur-md">
-                  <div className="text-xs text-gray-500">Efficiency</div>
-                  <div className="font-semibold text-white">88 <span className="text-[#FF4500]">(+3.5%)</span></div>
-                  <div className="mt-3 text-xs text-gray-500">Cost Reduction</div>
-                  <div className="font-semibold text-white">55 <span className="text-[#FF4500]">(-20%)</span></div>
-                </div>
-                <div className="absolute bottom-6 left-0 right-0 flex items-end justify-between px-6 opacity-60">
-                  <svg className="w-full h-12" viewBox="0 0 100 30" preserveAspectRatio="none">
-                    <path d="M0,20 Q25,30 50,15 T100,25" fill="none" stroke="#FF4500" strokeWidth="1.5" />
-                    <path d="M0,10 Q25,25 50,10 T100,5" fill="none" stroke="#FF4500" strokeWidth="1" strokeDasharray="2 2" />
-                  </svg>
-                </div>
-                <div className="absolute bottom-2 left-6 right-6 flex justify-between text-[10px] text-gray-600">
-                  <span>1.5</span><span>2.0</span><span className="text-white">2.5</span><span>3.0</span>
-                </div>
-              </div>
-              <h3 className="mt-6 text-2xl font-medium text-white">Performance Review Report</h3>
-              <p className="mt-3 text-base leading-relaxed text-gray-400">Use our Performance Review Report template to present detailed analytics.</p>
-            </motion.div>
-            <motion.div
-              initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="group flex flex-col"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg transition-all group-hover:scale-[1.02] group-hover:bg-white/10 group-hover:border-white/20 flex items-center justify-center">
-                <div className="w-[85%] rounded-xl border border-white/5 bg-[#141414] p-5 shadow-2xl">
-                  <div className="mb-4 inline-flex items-center gap-2 rounded bg-black/50 px-2 py-1 text-[10px] font-medium text-[#FF4500]">
-                    <span>👤</span> Login Darken
-                  </div>
-                  <h4 className="text-xl font-bold text-white">Welcome back!</h4>
-                  <p className="mt-1 text-[10px] text-gray-500">Welcome back! Please enter your details. Your information is 100% private.</p>
-                  <div className="mt-4 space-y-3">
-                    <div>
-                      <div className="mb-1 text-[9px] text-gray-400">Email Address</div>
-                      <div className="h-7 w-full rounded border border-white/10 bg-black/40"></div>
-                    </div>
-                    <div>
-                      <div className="mb-1 text-[9px] text-gray-400">Password</div>
-                      <div className="h-7 w-full rounded border border-white/10 bg-black/40"></div>
-                    </div>
-                  </div>
-                  <div className="mt-4 h-8 w-full rounded-md bg-[#FF4500] flex items-center justify-center text-xs font-semibold text-white">
-                    Login
-                  </div>
-                </div>
-              </div>
-              <h3 className="mt-6 text-2xl font-medium text-white">Client Onboarding Kit</h3>
-              <p className="mt-3 text-base leading-relaxed text-gray-400">Simplify the onboarding process with our Client Onboarding Kit.</p>
-            </motion.div>
-            <motion.div
-              initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
-              className="group flex flex-col"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg transition-all group-hover:scale-[1.02] group-hover:bg-white/10 group-hover:border-white/20 p-6">
-                <h4 className="text-sm font-semibold text-white">Financial Performance<br />Analysis - Q1 2024</h4>
-                <div className="absolute inset-0 flex items-center justify-center pt-8">
-                  <div className="relative w-full h-full p-6">
-                    <div className="absolute inset-x-6 top-10 border-t border-white/5 border-dashed"></div>
-                    <div className="absolute inset-x-6 top-20 border-t border-white/5 border-dashed"></div>
-                    <div className="absolute inset-x-6 top-32 border-t border-white/5 border-dashed"></div>
-                    <div className="absolute bottom-12 left-10 text-xs font-bold text-[#FF4500]">US$ 3000<div className="text-[8px] text-gray-600 font-normal">Jan 2024</div></div>
-                    <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-xs font-bold text-[#FF4500]">US$ 3200<div className="text-[8px] text-gray-600 font-normal">Jan 2024</div></div>
-                    <div className="absolute top-16 right-10 text-xs font-bold text-[#FF4500]">US$ 3323<div className="text-[8px] text-gray-600 font-normal">Jan 2024</div></div>
-                    <svg className="absolute bottom-4 left-6 right-6 w-[calc(100%-3rem)] h-24 overflow-visible" viewBox="0 0 100 50" preserveAspectRatio="none">
-                      <path d="M0,40 L20,35 L40,45 L60,20 L80,30 L100,5" fill="none" stroke="#FF4500" strokeWidth="1.5" />
-                      <path d="M0,45 L20,40 L40,50 L60,30 L80,35 L100,15" fill="none" stroke="#FF4500" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <h3 className="mt-6 text-2xl font-medium text-white">Sales Pitch Deck</h3>
-              <p className="mt-3 text-base leading-relaxed text-gray-400">Our Sales Pitch Deck template is designed to help you create persuasive presentations.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
 
       <section className="relative w-full z-30 my-12 bg-[#0a0a0a]">
         <motion.div
