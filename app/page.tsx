@@ -1,3 +1,891 @@
+// "use client";
+
+// import Image from "next/image";
+// import { motion } from "framer-motion";
+// import { Activity, ArrowRight, Award, Coins, Scale, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
+// import Link from "next/link";
+// import dynamic from "next/dynamic";
+// import { useEffect, useState } from "react";
+// import TradingViewWidget from "./components/TradingViewWidget";
+// import TickerTapeWidget from "./components/TickerTapeWidget";
+
+// const MagicRings = dynamic(() => import("./components/MagicRings"), { ssr: false });
+
+// export default function Home() {
+
+//   const [isMobile, setIsMobile] = useState(false);
+
+//   useEffect(() => {
+//     const check = () => setIsMobile(window.innerWidth < 768);
+//     check();
+//     window.addEventListener("resize", check);
+//     return () => window.removeEventListener("resize", check);
+//   }, []);
+
+//   return (
+//     <main className="min-h-screen bg-[#0a0a0a] selection:bg-[#FF4500]/30 selection:text-white">
+
+//       {/* 1. Hero Section */}
+//       <section className="relative w-full overflow-hidden pt-12">   {/* Changed to min-h-screen */}
+
+//         {/* Background Image */}
+//         <motion.div
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ duration: 1.5, ease: "easeInOut" }}
+//           className="absolute inset-0 z-0"
+//         >
+//           <Image
+//             src="/images/6752871d92d2860c7fca47cf_lightsbg.webp"
+//             alt="Hero background"
+//             fill
+//             sizes="100vw"
+//             className="object-cover object-top"
+//             priority
+//           />
+//         </motion.div>
+
+//         {/* Hero Content */}
+//         <div className="relative z-30 flex h-full flex-col lg:flex-row items-start lg:items-center max-w-7xl mx-auto gap-8 lg:gap-12 pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+
+//           {/* Left: Text Content */}
+//           <div className="flex flex-col items-start text-left text-white w-full lg:w-1/2 space-y-6 lg:pt-12">
+//             <motion.div
+//               initial={{ y: 30, opacity: 0 }}
+//               animate={{ y: 0, opacity: 1 }}
+//               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+//               className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm"
+//             >
+//               <span className="text-[#FF4500]">⚡</span> Premium Trading Platform
+//             </motion.div>
+
+//             <motion.h1
+//               initial={{ y: 40, opacity: 0 }}
+//               animate={{ y: 0, opacity: 1 }}
+//               transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+//               className="text-5xl font-normal tracking-tight lg:text-6xl"
+//             >
+//               The Ultimate <br />
+//               <span className="text-[#FF4500]">Gold Trading Resource</span>
+//             </motion.h1>
+
+//             <motion.p
+//               initial={{ y: 30, opacity: 0 }}
+//               animate={{ y: 0, opacity: 1 }}
+//               transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+//               className="max-w-lg text-base text-gray-400 lg:text-lg"
+//             >
+//               Unlock the full potential of your investments with real-time market data, advanced charting, and expert execution.
+//             </motion.p>
+
+//             <motion.div
+//               initial={{ y: 30, opacity: 0 }}
+//               animate={{ y: 0, opacity: 1 }}
+//               transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
+//               className="flex w-full max-w-sm flex-col items-start gap-4 sm:max-w-none sm:flex-row"
+//             >
+//               <a
+//                 href="https://portal.arakkalmarkets.com/register"
+//                 className="w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto text-center"
+//               >
+//                 Open Live Account
+//               </a>
+//               <a
+//                 href="https://portal.arakkalmarkets.com/opendemoaccount"
+//                 className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto text-center"
+//               >
+//                 Try Demo Account
+//               </a>
+//             </motion.div>
+//           </div>
+
+//           {/* Desktop Widget */}
+//           <motion.div
+//             initial={{ scale: 0.85, opacity: 0 }}
+//             animate={{ scale: 1, opacity: 1 }}
+//             transition={{
+//               duration: 0.9,
+//               delay: 0.8,
+//               ease: "easeOut",
+//             }}
+//             className="hidden lg:block lg:absolute lg:right-0 h-[420px] overflow-hidden"
+//             style={{
+//               width: "calc(50% + 0px)",
+//               mixBlendMode: "lighten",
+//             }}
+//           >
+//             <TradingViewWidget />
+//           </motion.div>
+
+//           {/* Mobile Widget - Fully Visible */}
+//           <motion.div
+//             initial={{ y: 40, opacity: 0 }}
+//             animate={{ y: 0, opacity: 1 }}
+//             transition={{ duration: 0.9, delay: 0.8, ease: "easeOut" }}
+//             className="lg:hidden w-full mt-6"
+//           >
+//             <div
+//               className="w-full overflow-hidden rounded-2xl"
+//               style={{
+//                 mixBlendMode: "lighten",
+//                 height: "360px",        // Slightly reduced but safe
+//                 maxHeight: "420px"
+//               }}
+//             >
+//               <TradingViewWidget />
+//             </div>
+//           </motion.div>
+
+//         </div>
+//       </section>
+
+//       {/* === TICKER WIDGET AFTER HERO === */}
+//       {/* === FULL WIDTH TRANSPARENT TICKER - NO OVERFLOW === */}
+//       <section className="relative z-30 bg-[#0a0a0a] border-b border-white/10 overflow-hidden">
+//         <div className="max-w-[100vw] w-screen">
+//           <TickerTapeWidget />
+//         </div>
+//       </section>
+
+//       {/* 2. Infinite Scrolling Marquee */}
+//       <motion.div
+//         initial={{ opacity: 0 }}
+//         whileInView={{ opacity: 1 }}
+//         viewport={{ once: true }}
+//         transition={{ duration: 1 }}
+//         className="relative overflow-hidden py-12  z-30"
+//       >
+//         <p className="mb-10 text-center text-xl font-medium text-gray-400">
+//           Our Core Advantages
+//         </p>
+
+//         {/* Marquee Container with Masked Edges */}
+//         <div className="mx-auto flex max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+//           <div className="flex animate-marquee whitespace-nowrap">
+
+//             {/* We map over the 5 items multiple times (e.g., 4 sets) 
+//               to ensure the screen is filled and the infinite scroll loop doesn't break. 
+//             */}
+//             {[...Array(4)].map((_, arrayIndex) => (
+//               <div key={arrayIndex} className="flex">
+//                 {[
+//                   {
+//                     text: "Globally Licensed",
+//                     icon: (
+//                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//                         <circle cx="12" cy="12" r="10" />
+//                         <path d="M2 12h20" />
+//                         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+//                       </svg>
+//                     ),
+//                   },
+//                   {
+//                     text: "Safety and Security of Funds",
+//                     icon: (
+//                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+//                       </svg>
+//                     ),
+//                   },
+//                   {
+//                     text: "Trading Conditions",
+//                     icon: (
+//                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//                         <path d="M3 3v18h18" />
+//                         <path d="m19 9-5 5-4-4-3 3" />
+//                       </svg>
+//                     ),
+//                   },
+//                   {
+//                     text: "Regular Contests & Promotions",
+//                     icon: (
+//                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//                         <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+//                         <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+//                         <path d="M4 22h16" />
+//                         <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+//                         <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+//                         <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+//                       </svg>
+//                     ),
+//                   },
+//                   {
+//                     text: "Wide Range of Trading Instruments",
+//                     icon: (
+//                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//                         <polygon points="12 2 2 7 12 12 22 7 12 2" />
+//                         <polyline points="2 17 12 22 22 17" />
+//                         <polyline points="2 12 12 17 22 12" />
+//                       </svg>
+//                     ),
+//                   }
+//                 ].map((item, itemIndex) => (
+//                   <div
+//                     key={itemIndex}
+//                     className="mx-12 flex flex-shrink-0 items-center gap-3 text-2xl font-bold text-gray-500/70 transition-colors hover:text-gray-400"
+//                   >
+//                     {item.icon}
+//                     {item.text}
+//                   </div>
+//                 ))}
+//               </div>
+//             ))}
+
+//           </div>
+//         </div>
+//       </motion.div>
+
+//       {/* 3. Learn About Us Section */}
+//       <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
+//         {/* Subtle background glow */}
+//         <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#FF4500]/5 rounded-full blur-[64px] pointer-events-none -translate-y-1/2 -translate-x-1/2"></div>
+
+//         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+//           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+//             {/* Left Side: Content */}
+//             <motion.div
+//               initial={{ x: -40, opacity: 0 }}
+//               whileInView={{ x: 0, opacity: 1 }}
+//               viewport={{ once: true }}
+//               transition={{ duration: 0.8, ease: "easeOut" }}
+//               className="flex flex-col items-start text-left"
+//             >
+//               <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm mb-6">
+//                 <span className="text-[#FF4500]">✦</span> Learn About us
+//               </div>
+
+//               <h2 className="text-5xl font-normal tracking-tight lg:text-6xl text-white leading-[1.1]">
+//                 Awards Winning <br />
+//                 <span className="text-[#FF4500]">Digital Trading</span> Platform.
+//               </h2>
+
+//               <p className="mt-6 text-base text-gray-400 lg:text-lg leading-relaxed">
+//                 Here at Arakkal Markets, we provide one of the safest online trading platforms to our clients and partners. We believe in developing a sustainable workforce through our years-long experience, in-depth knowledge of the financial market and the association of our trusted partners.
+//               </p>
+
+//               <p className="mt-4 text-base text-gray-400 lg:text-lg leading-relaxed">
+//                 We have set an example of responsible trading that has made us a reliable platform for services like equity indices, energies, precious metals and CFDs.
+//               </p>
+
+//               <Link
+//                 href="/about-us"
+//                 className="group mt-10 inline-flex items-center gap-2 rounded-lg bg-[#FF4500] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[#E03E00] hover:shadow-[#FF4500]/20"
+//               >
+//                 Read more
+//                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+//               </Link>
+//             </motion.div>
+
+//             {/* Right Side: Premium Glassmorphism Visual */}
+//             <motion.div
+//               initial={{ x: 40, opacity: 0 }}
+//               whileInView={{ x: 0, opacity: 1 }}
+//               viewport={{ once: true }}
+//               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+//               className="relative w-full aspect-square max-w-md mx-auto lg:max-w-none lg:aspect-[4/3] flex items-center justify-center"
+//             >
+//               {/* Decorative background rings */}
+//               <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_60s_linear_infinite]"></div>
+//               <div className="absolute inset-8 rounded-full border border-[#FF4500]/10 animate-[spin_40s_linear_infinite_reverse]"></div>
+
+//               {/* Main Floating Glass Card */}
+//               <div className="relative z-20 w-3/4 p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-500 hover:scale-[1.02]">
+
+//                 {/* Glowing Trophy Icon */}
+//                 <div className="relative mb-6 flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF4500]/20 to-transparent border border-[#FF4500]/30 shadow-[0_0_30px_rgba(255,69,0,0.3)]">
+//                   <Trophy className="h-12 w-12 text-[#FF4500]" strokeWidth={1.5} />
+//                   {/* Sparkle icons */}
+//                   <Star className="absolute -top-2 -right-2 h-5 w-5 text-yellow-500 animate-pulse" fill="currentColor" />
+//                   <Star className="absolute top-1/2 -left-3 h-3 w-3 text-yellow-500 animate-pulse delay-150" fill="currentColor" />
+//                 </div>
+
+//                 <h3 className="text-2xl font-bold text-white mb-2">Industry Leaders</h3>
+//                 <p className="text-sm text-gray-400">Recognized globally for excellence in digital trading and security.</p>
+
+//                 {/* Animated Stats Bar */}
+//                 <div className="mt-8 w-full space-y-3">
+//                   <div className="flex justify-between text-xs font-medium">
+//                     <span className="text-gray-400">Platform Reliability</span>
+//                     <span className="text-[#FF4500]">99.9%</span>
+//                   </div>
+//                   <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
+//                     <motion.div
+//                       initial={{ width: 0 }}
+//                       whileInView={{ width: "99.9%" }}
+//                       viewport={{ once: true }}
+//                       transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+//                       className="h-full rounded-full bg-[#FF4500]"
+//                     />
+//                   </div>
+//                 </div>
+
+//               </div>
+
+//               {/* Floating Element 1 */}
+//               <motion.div
+//                 animate={!isMobile ? { y: [0, -15, 0] } : { y: 0 }}
+//                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+//                 className="absolute -bottom-6 -left-6 z-30 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] p-4 shadow-xl"
+//               >
+//                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10 text-green-500">
+//                   <ShieldCheck className="h-5 w-5" />
+//                 </div>
+//                 <div className="text-left">
+//                   <div className="text-xs text-gray-500">Security</div>
+//                   <div className="text-sm font-bold text-white">Tier-1 Protected</div>
+//                 </div>
+//               </motion.div>
+
+//               {/* Floating Element 2 */}
+//               <motion.div
+//                 animate={!isMobile ? { y: [0, 15, 0] } : { y: 0 }}
+//                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+//                 className="absolute -top-6 -right-6 z-30 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] p-4 shadow-xl"
+//               >
+//                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FF4500]/10 text-[#FF4500]">
+//                   <Activity className="h-5 w-5" />
+//                 </div>
+//                 <div className="text-left">
+//                   <div className="text-xs text-gray-500">Execution</div>
+//                   <div className="text-sm font-bold text-white">Ultra-Fast</div>
+//                 </div>
+//               </motion.div>
+
+//             </motion.div>
+
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* 3 Our Focus Section (Asymmetric Split Layout) */}
+//       <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
+//         {/* Subtle background glow for this specific section */}
+//         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#FF4500]/5 rounded-full blur-[64px] pointer-events-none"></div>
+
+//         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+//           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+
+//             {/* Left Side: Main Focus Text */}
+//             <motion.div
+//               initial={{ x: -40, opacity: 0 }}
+//               whileInView={{ x: 0, opacity: 1 }}
+//               viewport={{ once: true }}
+//               transition={{ duration: 0.8, ease: "easeOut" }}
+//               className="flex flex-col items-start text-left max-w-lg"
+//             >
+//               <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm mb-6">
+//                 <span className="text-[#FF4500]">✦</span> Client-Centric Approach
+//               </div>
+//               <h2 className="text-5xl font-normal tracking-tight lg:text-6xl text-white leading-tight">
+//                 Our focus is <br />
+//                 <span className="text-[#FF4500] font-bold">you.</span>
+//               </h2>
+//               <p className="mt-6 text-base text-gray-400 lg:text-lg leading-relaxed border-l-2 border-[#FF4500]/50 pl-4">
+//                 We’re always looking for innovative ways to improve and elevate your daily trading experience.
+//               </p>
+//             </motion.div>
+
+//             {/* Right Side: Feature Cards */}
+//             <div className="flex flex-col gap-6">
+
+//               {/* Feature Card 1: Value for money */}
+//               <motion.div
+//                 initial={{ y: 40, opacity: 0 }}
+//                 whileInView={{ y: 0, opacity: 1 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.6, delay: 0.2 }}
+//                 className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-1"
+//               >
+//                 <div className="absolute top-0 right-0 p-8 opacity-5 transition-opacity group-hover:opacity-10 text-white">
+//                   <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+//                 </div>
+//                 <div className="relative z-10 flex items-start gap-6">
+//                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-black/40 border border-white/5 text-[#FF4500]">
+//                     <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+//                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+//                     </svg>
+//                   </div>
+//                   <div>
+//                     <h3 className="mb-2 text-2xl font-medium text-white">Value for money</h3>
+//                     <p className="text-base leading-relaxed text-gray-400">
+//                       Keep your trading costs down with highly competitive spreads and low margins.
+//                     </p>
+//                   </div>
+//                 </div>
+//               </motion.div>
+
+//               {/* Feature Card 2: Intuitive platform */}
+//               <motion.div
+//                 initial={{ y: 40, opacity: 0 }}
+//                 whileInView={{ y: 0, opacity: 1 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.6, delay: 0.4 }}
+//                 className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-1"
+//               >
+//                 <div className="absolute top-0 right-0 p-8 opacity-5 transition-opacity group-hover:opacity-10 text-white">
+//                   <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>
+//                 </div>
+//                 <div className="relative z-10 flex items-start gap-6">
+//                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-black/40 border border-white/5 text-[#FF4500]">
+//                     <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+//                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+//                     </svg>
+//                   </div>
+//                   <div>
+//                     <h3 className="mb-2 text-2xl font-medium text-white">Intuitive platform</h3>
+//                     <p className="text-base leading-relaxed text-gray-400">
+//                       Trade on our user-friendly, proprietary platform and highly responsive native apps.
+//                     </p>
+//                   </div>
+//                 </div>
+//               </motion.div>
+
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       <section className="relative w-full z-30 my-12 bg-[#0a0a0a]">
+//         <motion.div
+//           // 1. Change animation to simple bottom to top slide-in
+//           initial={{ y: 60, opacity: 0 }}
+//           whileInView={{ y: 0, opacity: 1 }}
+//           viewport={{ once: true, amount: 0.3 }} // animated when 30% in view
+//           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} // Smooth cubic-bezier ease-out
+//           // 2. Center the image horizontally
+//           className="w-full flex justify-center items-center px-4"
+//         >
+//           <Image
+//             src="/images/LapandPhone.png"
+//             alt="MetaTrader Mockup"
+//             width={2560}
+//             height={1440}
+//             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+//             className="w-full max-w-7xl h-auto block mx-auto object-contain"
+//           />
+//         </motion.div>
+//       </section>
+
+//       {/* 4. Key Features Section */}
+//       {/* 4. Key Features Section */}
+//       <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
+//         {/* Optional subtle background glow behind the grid */}
+//         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF4500]/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+//         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+
+//           {/* Section Header */}
+//           <motion.div
+//             initial={{ y: 40, opacity: 0 }}
+//             whileInView={{ y: 0, opacity: 1 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8, ease: "easeOut" }}
+//             className="flex flex-col items-center text-center mb-16"
+//           >
+//             <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+//               <span className="text-[#FF4500]">✦</span> Key Features
+//             </div>
+//             <h2 className="mt-8 text-5xl font-normal tracking-tight lg:text-6xl text-white">
+//               Engineered for <br />
+//               <span className="text-[#FF4500]">Performance & Security</span>
+//             </h2>
+//             <p className="mx-auto mt-6 max-w-2xl text-base text-gray-400 lg:text-lg">
+//               Experience next-generation trading powered by decentralized <br className="hidden sm:block" />
+//               technology, smart contracts, and unmatched speed.
+//             </p>
+//           </motion.div>
+
+//           {/* Bento Box Grid */}
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+//             {/* Feature 1: High Speed (Wide - Spans 2 columns) */}
+//             <motion.div
+//               initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+//               className="md:col-span-2 group relative flex flex-col sm:flex-row items-center justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20"
+//             >
+//               {/* Text Left */}
+//               <div className="relative z-20 sm:w-1/2 sm:pr-8 mb-8 sm:mb-0 text-left">
+//                 <h3 className="text-2xl font-medium text-white mb-3">High speed and low costs</h3>
+//                 <p className="text-base leading-relaxed text-gray-400">
+//                   Immediate funding without third-parties. Smart contracts autonomously perform funding – collect and release payments.
+//                 </p>
+//               </div>
+//               {/* Visual Right */}
+//               <div className="relative z-10 w-full sm:w-1/2 h-40 rounded-2xl border border-white/5 bg-black/40 flex items-center justify-center overflow-hidden">
+//                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FF4500]/10 to-transparent opacity-50"></div>
+//                 <div className="flex w-full items-center justify-between px-6">
+//                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#1a1a1a] border border-white/10 shadow-xl text-xl z-10">👤</div>
+//                   <div className="flex-1 relative mx-2">
+//                     <div className="absolute top-1/2 left-0 w-full border-t-2 border-dashed border-[#FF4500]/40 -translate-y-1/2"></div>
+//                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF4500] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-[0_0_15px_rgba(255,69,0,0.5)] z-20 group-hover:scale-110 transition-transform">0.01s</div>
+//                   </div>
+//                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#1a1a1a] border border-white/10 shadow-xl text-xl z-10">🏦</div>
+//                 </div>
+//               </div>
+//             </motion.div>
+
+//             {/* Feature 2: Fair Deals (Square - Spans 1 column) */}
+//             <motion.div
+//               initial={{ y: 40, opacity: 0 }}
+//               whileInView={{ y: 0, opacity: 1 }}
+//               viewport={{ once: true }}
+//               transition={{ duration: 0.6, delay: 0.2 }}
+//               className="md:col-span-1 group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20"
+//             >
+//               <div className="relative z-20 mb-8">
+//                 <h3 className="text-2xl font-medium text-white mb-3">Fair deals only</h3>
+//                 <p className="text-base leading-relaxed text-gray-400">
+//                   Open-source smart contract ensures fair and transparent deals between merchants and affiliates.
+//                 </p>
+//               </div>
+
+//               {/* Secure Smart Contract Connection Visual */}
+//               <div className="relative z-10 mt-auto flex h-32 w-full items-center justify-center px-2">
+//                 <div className="absolute inset-0 bg-gradient-to-t from-[#FF4500]/5 to-transparent rounded-xl"></div>
+//                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#111111] border border-white/10 shadow-lg group-hover:border-white/30 transition-colors z-10">
+//                   <div className="h-3 w-3 rounded-full bg-white/20 group-hover:bg-white/40 transition-colors"></div>
+//                 </div>
+//                 <div className="relative flex flex-1 items-center justify-center">
+//                   <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-[#FF4500]/50 to-transparent group-hover:via-[#FF4500] transition-colors duration-500"></div>
+//                   <div className="relative z-20 flex h-14 w-14 items-center justify-center rounded-xl bg-[#141414] border border-[#FF4500]/40 shadow-[0_0_20px_rgba(255,69,0,0.2)] group-hover:border-[#FF4500] group-hover:shadow-[0_0_25px_rgba(255,69,0,0.4)] group-hover:scale-110 transition-all duration-300">
+//                     <svg className="h-6 w-6 text-[#FF4500]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                     </svg>
+//                     <div className="absolute -bottom-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-[#FF4500] border-2 border-[#141414]">
+//                       <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+//                       </svg>
+//                     </div>
+//                   </div>
+//                 </div>
+//                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#111111] border border-white/10 shadow-lg group-hover:border-white/30 transition-colors z-10">
+//                   <div className="h-3 w-3 rounded-full bg-white/20 group-hover:bg-white/40 transition-colors"></div>
+//                 </div>
+//               </div>
+//             </motion.div>
+
+//             {/* Feature 3: Protection (Square - Spans 1 column) */}
+//             <motion.div
+//               initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
+//               className="md:col-span-1 group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20"
+//             >
+//               <div className="relative z-20 mb-8">
+//                 <h3 className="text-2xl font-medium text-white mb-3">Protection from hacking</h3>
+//                 <p className="text-base leading-relaxed text-gray-400">
+//                   On a decentralized platform, all user accounts are independent; if one account is hacked, this won’t breach the security of.
+//                 </p>
+//               </div>
+//               <div className="relative z-10 mt-auto flex h-32 w-full items-center justify-center">
+//                 <svg className="absolute inset-0 h-full w-full text-[#FF4500]/10 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+//                 <svg className="absolute inset-0 h-full w-full text-[#FF4500]/30 blur-md" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+//                 <svg className="relative z-10 h-10 w-10 text-[#FF4500]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+//                   <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+//                 </svg>
+//               </div>
+//             </motion.div>
+
+//             {/* Feature 4: Easy Entry (Wide - Spans 2 columns) */}
+//             <motion.div
+//               initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}
+//               className="md:col-span-2 group relative flex flex-col sm:flex-row items-center justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20"
+//             >
+//               {/* Visual Left */}
+//               <div className="relative z-10 w-full sm:w-1/2 h-40 mb-8 sm:mb-0 rounded-2xl border border-white/5 bg-black/40 overflow-hidden">
+//                 <svg className="absolute inset-0 h-full w-full" viewBox="0 0 200 150">
+//                   <line x1="100" y1="50" x2="60" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="2" />
+//                   <line x1="100" y1="50" x2="140" y2="100" stroke="#FF4500" strokeWidth="2" strokeDasharray="4" className="animate-pulse" />
+//                   <line x1="60" y1="100" x2="140" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="2" />
+//                 </svg>
+//                 <div className="absolute top-[50px] left-[100px] -translate-x-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-[#1a1a1a] border border-white/20 z-10 flex items-center justify-center text-xs text-white">P1</div>
+//                 <div className="absolute top-[100px] left-[60px] -translate-x-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-[#1a1a1a] border border-white/20 z-10 flex items-center justify-center text-xs text-white">P2</div>
+//                 <div className="absolute top-[100px] left-[140px] -translate-x-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-[#FF4500]/20 border border-[#FF4500] shadow-[0_0_15px_rgba(255,69,0,0.4)] z-10 flex items-center justify-center text-xs text-white font-bold group-hover:bg-[#FF4500]/40 transition-colors">You</div>
+//               </div>
+//               {/* Text Right */}
+//               <div className="relative z-20 sm:w-1/2 sm:pl-8 text-left">
+//                 <h3 className="text-2xl font-medium text-white mb-3">Easy entry and fair competition</h3>
+//                 <p className="text-base leading-relaxed text-gray-400">
+//                   Open-source smart contract ensures fair and transparent deals between merchants and affiliates.
+//                 </p>
+//               </div>
+//             </motion.div>
+
+//             {/* Feature 5: Real-time DB (Wide - Spans 2 columns) */}
+//             <motion.div
+//               initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.5 }}
+//               className="md:col-span-2 group relative flex flex-col sm:flex-row items-center justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20"
+//             >
+//               {/* Text Left */}
+//               <div className="relative z-20 sm:w-1/2 sm:pr-8 mb-8 sm:mb-0 text-left">
+//                 <h3 className="text-2xl font-medium text-white mb-3">Real-time database</h3>
+//                 <p className="text-base leading-relaxed text-gray-400">
+//                   Scale economy through decentralization leading to significant decrease in transaction fees.
+//                 </p>
+//               </div>
+//               {/* Visual Right */}
+//               <div className="relative z-10 w-full sm:w-1/2 h-40 rounded-2xl border border-white/5 bg-black/40 flex flex-col items-center justify-center gap-3 px-6 overflow-hidden">
+//                 {[1, 2, 3].map((i) => (
+//                   <div key={i} className="h-8 w-full rounded-lg border border-white/10 bg-[#141414] flex items-center px-4 shadow-lg relative overflow-hidden transition-transform group-hover:translate-x-1" style={{ transitionDelay: `${i * 50}ms` }}>
+//                     <div className={`absolute left-0 top-0 bottom-0 w-1 ${i === 2 ? 'bg-[#FF4500]' : 'bg-white/5'}`}></div>
+//                     <div className="flex gap-2 ml-2">
+//                       <div className={`h-1.5 w-1.5 rounded-full ${i === 2 ? 'bg-[#FF4500] animate-pulse' : 'bg-green-500'}`}></div>
+//                       <div className="h-1.5 w-1.5 rounded-full bg-gray-600"></div>
+//                     </div>
+//                     <div className="ml-auto h-1 w-1/3 bg-white/5 rounded-full"></div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </motion.div>
+
+//             {/* Feature 6: Cost Effective (Square - Spans 1 column) */}
+//             <motion.div
+//               initial={{ y: 40, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.6 }}
+//               className="md:col-span-1 group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20"
+//             >
+//               <div className="relative z-20 mb-8">
+//                 <h3 className="text-2xl font-medium text-white mb-3">Cost effective</h3>
+//                 <p className="text-base leading-relaxed text-gray-400">
+//                   Scale economy through decentralization leading to significant decrease in transaction fees.
+//                 </p>
+//               </div>
+//               <div className="relative z-10 mt-auto w-full h-24 flex items-end gap-2 border-b border-white/10">
+//                 <div className="flex-1 bg-white/10 h-[90%] rounded-t-md transition-all group-hover:h-[80%]"></div>
+//                 <div className="flex-1 bg-white/10 h-[65%] rounded-t-md transition-all group-hover:h-[50%]"></div>
+//                 <div className="flex-1 bg-white/10 h-[40%] rounded-t-md transition-all group-hover:h-[30%]"></div>
+//                 <div className="flex-1 bg-[#FF4500] h-[15%] rounded-t-md relative transition-all group-hover:h-[10%]">
+//                   <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-[#FF4500] bg-[#FF4500]/10 px-1.5 py-0.5 rounded border border-[#FF4500]/20">
+//                     Low
+//                   </div>
+//                 </div>
+//               </div>
+//             </motion.div>
+
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* 5. Why People Choose Us Section (Editorial List UI with Lucide Icons) */}
+//       <section className="py-12 sm:py-24 relative z-30 overflow-hidden">
+//         {/* Subtle background glow */}
+//         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FF4500]/5 rounded-full blur-[150px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
+
+//         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+
+//           <motion.div
+//             initial={{ y: 40, opacity: 0 }}
+//             whileInView={{ y: 0, opacity: 1 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8, ease: "easeOut" }}
+//             className="mb-20 flex flex-col items-center text-center"
+//           >
+//             <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+//               <span className="text-[#FF4500]">✦</span> Awesome Service
+//             </div>
+//             <h2 className="mt-6 text-5xl font-normal tracking-tight lg:text-6xl text-white">
+//               Why People <span className="text-[#FF4500]">Choose Us</span>
+//             </h2>
+//           </motion.div>
+
+//           <div className="grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+//             {[
+//               {
+//                 title: "Safe and Secure",
+//                 desc: "We aim to provide you with a safe and secure trading platform, and that is why we have incorporated many supplementary protective mechanisms across all our activities.",
+//                 icon: ShieldCheck
+//               },
+//               {
+//                 title: "Ethical Trading Conditions",
+//                 desc: "As a trusted and reputable partner, we let our client access and enjoy ethical tradition conditions.",
+//                 icon: Scale
+//               },
+//               {
+//                 title: "Fast Execution",
+//                 desc: "We follow a strict no-rejections and no-re-quotes policy that enable us to execute more than 99% orders in a second.",
+//                 icon: Zap
+//               },
+//               {
+//                 title: "Wealth of Experience",
+//                 desc: "Our dedicated workforce comes with a wealth of experience. The sole aim of our leadership is to enhance the level of our credibility.",
+//                 icon: Award
+//               },
+//               {
+//                 title: "Cost Efficiency",
+//                 desc: "The cost of trading is the overall expense that has to incur in order to run their trading business.",
+//                 icon: Coins
+//               },
+//               {
+//                 title: "High Liquidity",
+//                 desc: "The term liquidity is generally used in the financial markets to describe the ease by which an asset can be converted into cash without difficulty.",
+//                 icon: Activity
+//               }
+//             ].map((feature, index) => {
+//               const Icon = feature.icon; // Assign component to a variable to render it
+
+//               return (
+//                 <motion.div
+//                   key={index}
+//                   initial={{ y: 40, opacity: 0 }}
+//                   whileInView={{ y: 0, opacity: 1 }}
+//                   viewport={{ once: true }}
+//                   transition={{ duration: 0.6, delay: index * 0.1 }}
+//                   className="group relative pt-8 pb-4"
+//                 >
+//                   {/* Animated Top Border Line */}
+//                   <motion.div
+//                     initial={{ scaleX: 0 }}
+//                     whileInView={{ scaleX: 1 }}
+//                     viewport={{ once: true }}
+//                     transition={{ duration: 0.8, delay: index * 0.1 }}
+//                     className="absolute top-0 left-0 w-full h-[1px] bg-white/10 origin-left group-hover:bg-[#FF4500] transition-colors duration-300"
+//                   />
+
+//                   {/* Top Section: Icon and Giant Number */}
+//                   <div className="flex justify-between items-start mb-8">
+//                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white transition-all duration-300 group-hover:bg-[#FF4500] group-hover:border-[#FF4500] group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,69,0,0.4)]">
+//                       <Icon className="h-6 w-6" strokeWidth={1.5} />
+//                     </div>
+//                     <div className="text-6xl font-bold text-white/5 transition-colors duration-300 group-hover:text-[#FF4500]/10 select-none pointer-events-none">
+//                       0{index + 1}
+//                     </div>
+//                   </div>
+
+//                   {/* Content Section */}
+//                   <h3 className="mb-3 text-2xl font-medium text-white transition-colors duration-300 group-hover:text-[#FF4500]">
+//                     {feature.title}
+//                   </h3>
+//                   <p className="text-base leading-relaxed text-gray-400">
+//                     {feature.desc}
+//                   </p>
+//                 </motion.div>
+//               );
+//             })}
+//           </div>
+
+//         </div>
+//       </section>
+
+//       <section className="relative w-full z-30 my-12 bg-[#0a0a0a]">
+//         <motion.div
+//           // 1. Change animation to simple bottom to top slide-in
+//           initial={{ y: 60, opacity: 0 }}
+//           whileInView={{ y: 0, opacity: 1 }}
+//           viewport={{ once: true, amount: 0.3 }} // animated when 30% in view
+//           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} // Smooth cubic-bezier ease-out
+//           // 2. Center the image horizontally
+//           className="w-full flex justify-center items-center px-4"
+//         >
+//           <Image
+//             src="/images/Monitor2.png"
+//             alt="MetaTrader Mockup"
+//             width={2560}
+//             height={1440}
+//             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+//             className="w-full max-w-7xl h-auto block mx-auto object-contain"
+//           />
+//         </motion.div>
+//       </section>
+
+//       {/* 7. CTA Section */}
+//       <section className="py-12 sm:py-20 relative z-30 pb-32">
+//         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+//           <motion.div
+//             initial={{ scale: 0.95, opacity: 0 }}
+//             whileInView={{ scale: 1, opacity: 1 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8, ease: "easeOut" }}
+//             className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0d0d0d] py-24 shadow-2xl"
+//           >
+
+//             {/* MagicRings Background — full bleed behind content */}
+//             <div className="absolute inset-0 z-0">
+//               {!isMobile ? (
+//                 <MagicRings
+//                   color="#A855F7"
+//                   colorTwo="#6366F1"
+//                   ringCount={6}
+//                   speed={1}
+//                   attenuation={10}
+//                   lineThickness={2}
+//                   baseRadius={0.5}
+//                   radiusStep={0.1}
+//                   scaleRate={0.1}
+//                   opacity={1}
+//                   blur={0}
+//                   noiseAmount={0.1}
+//                   rotation={0}
+//                   ringGap={1.5}
+//                   fadeIn={0.7}
+//                   fadeOut={0.5}
+//                   followMouse={false}
+//                   mouseInfluence={0.2}
+//                   hoverScale={1.2}
+//                   parallax={0.05}
+//                   clickBurst={false}
+//                 />
+//               ) : (
+//                 /* Lightweight Mobile Fallback */
+//                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#A855F7]/20 via-[#0d0d0d] to-[#0d0d0d]"></div>
+//               )}
+//             </div>
+
+//             {/* Subtle dark vignette so text stays readable */}
+//             <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.75)_100%)]" />
+
+//             {/* Content */}
+//             <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center text-center px-6">
+//               <motion.h2
+//                 initial={{ y: 30, opacity: 0 }}
+//                 whileInView={{ y: 0, opacity: 1 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.6, delay: 0.2 }}
+//                 className="text-5xl font-normal tracking-tight lg:text-6xl text-white"
+//               >
+//                 Start Your Trading{" "}
+//                 <span className="text-[#FF4500]">Journey Today</span>
+//               </motion.h2>
+
+//               <motion.p
+//                 initial={{ y: 30, opacity: 0 }}
+//                 whileInView={{ y: 0, opacity: 1 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.6, delay: 0.3 }}
+//                 className="mt-6 text-base text-gray-400 lg:text-lg"
+//               >
+//                 Open an account today and experience our premium execution,{" "}
+//                 <br className="hidden sm:block" />
+//                 tight spreads, and world-class trading environment.
+//               </motion.p>
+
+//               <motion.div
+//                 initial={{ y: 30, opacity: 0 }}
+//                 whileInView={{ y: 0, opacity: 1 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.6, delay: 0.4 }}
+//                 className="mt-10 flex w-full max-w-sm flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row"
+//               >
+//                 <Link
+//                   href="https://portal.arakkalmarkets.com/register"
+//                   className="w-full rounded-lg bg-[#FF4500] px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#E03E00] sm:w-auto"
+//                 >
+//                   Open Live Account
+//                 </Link>
+//                 <Link
+//                   href="https://portal.arakkalmarkets.com/opendemoaccount"
+//                   className="w-full rounded-lg border border-white/20 bg-black/40 px-8 py-3.5 text-center text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
+//                 >
+//                   Try Demo Account
+//                 </Link>
+//               </motion.div>
+//             </div>
+
+//           </motion.div>
+//         </div>
+//       </section>
+
+//     </main>
+//   );
+// }
+
 "use client";
 
 import Image from "next/image";
@@ -5,7 +893,7 @@ import { motion } from "framer-motion";
 import { Activity, ArrowRight, Award, Coins, Scale, ShieldCheck, Star, Trophy, Zap } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import TradingViewWidget from "./components/TradingViewWidget";
 import TickerTapeWidget from "./components/TickerTapeWidget";
 
@@ -26,7 +914,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#0a0a0a] selection:bg-[#FF4500]/30 selection:text-white">
 
       {/* 1. Hero Section */}
-      <section className="relative w-full overflow-hidden pt-12">   {/* Changed to min-h-screen */}
+      <section className="relative w-full overflow-hidden pt-12 sm:pt-24 min-h-[600px] flex items-center">
 
         {/* Background Image */}
         <motion.div
@@ -45,11 +933,11 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* Hero Content */}
-        <div className="relative z-30 flex h-full flex-col lg:flex-row items-start lg:items-center max-w-7xl mx-auto gap-8 lg:gap-12 pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+        {/* Hero Content - CHANGED lg:items-center to lg:items-end */}
+        <div className="relative z-30 flex h-full flex-col lg:flex-row items-start lg:items-end max-w-7xl mx-auto gap-8 lg:gap-12 pt-20 pb-12 px-4 sm:px-6 lg:px-8 w-full">
 
           {/* Left: Text Content */}
-          <div className="flex flex-col items-start text-left text-white w-full lg:w-1/2 space-y-6 lg:pt-12">
+          <div className="flex flex-col items-start text-left text-white w-full lg:w-1/2 space-y-6">
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -59,14 +947,75 @@ export default function Home() {
               <span className="text-[#FF4500]">⚡</span> Premium Trading Platform
             </motion.div>
 
+            {/* Responsive Typing Effect Heading */}
             <motion.h1
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-              className="text-5xl font-normal tracking-tight lg:text-6xl"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 1 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.04, // Speed of the typing
+                    delayChildren: 0.7, // Wait for badge
+                  },
+                },
+              }}
+              className="text-5xl lg:text-6xl font-normal tracking-tight w-full"
             >
-              The Ultimate <br />
-              <span className="text-[#FF4500]">Gold Trading Resource</span>
+              <span className="block">
+                {"The Ultimate".split(" ").map((word, wordIdx) => (
+                  <span key={`w1-${wordIdx}`} className="inline-block mr-[0.25em]">
+                    {word.split("").map((char, charIdx) => (
+                      <motion.span
+                        key={`c1-${wordIdx}-${charIdx}`}
+                        variants={{
+                          hidden: { opacity: 0, display: "none" },
+                          visible: { opacity: 1, display: "inline" },
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
+                ))}
+              </span>
+
+              <span className="text-[#FF4500] block mt-1 lg:mt-2">
+                {"Gold Trading Resource".split(" ").map((word, wordIdx) => (
+                  <React.Fragment key={`w2-${wordIdx}`}>
+                    <span className="inline-block mr-[0.25em]">
+                      {word.split("").map((char, charIdx) => (
+                        <motion.span
+                          key={`c2-${wordIdx}-${charIdx}`}
+                          variants={{
+                            hidden: { opacity: 0, display: "none" },
+                            visible: { opacity: 1, display: "inline" },
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </span>
+
+                    {/* THE FIX: Force line break after "Trading" (word index 1) on mobile screens */}
+                    {wordIdx === 1 && <br className="md:hidden" />}
+                  </React.Fragment>
+                ))}
+
+                {/* Blinking Cursor */}
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 0.8,
+                    ease: "linear",
+                    delay: 2 // Start blinking after typing is finished
+                  }}
+                  className="inline-block w-[3px] sm:w-[4px] h-[0.85em] bg-[#FF4500] align-middle rounded-full -ml-[0.1em]"
+                />
+              </span>
             </motion.h1>
 
             <motion.p
@@ -82,7 +1031,7 @@ export default function Home() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
-              className="flex w-full max-w-sm flex-col items-start gap-4 sm:max-w-none sm:flex-row"
+              className="flex w-full max-w-sm flex-col items-start gap-4 sm:max-w-none sm:flex-row pb-2 lg:pb-0" // Small padding tweak here
             >
               <a
                 href="https://portal.arakkalmarkets.com/register"
@@ -99,7 +1048,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Desktop Widget */}
+          {/* Desktop Widget - Removed absolute positioning, changed to lg:w-1/2 flex child */}
           <motion.div
             initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -108,9 +1057,8 @@ export default function Home() {
               delay: 0.8,
               ease: "easeOut",
             }}
-            className="hidden lg:block lg:absolute lg:right-0 h-[420px] overflow-hidden"
+            className="hidden lg:block lg:w-1/2 h-[420px] overflow-hidden rounded-2xl"
             style={{
-              width: "calc(50% + 0px)",
               mixBlendMode: "lighten",
             }}
           >
@@ -128,7 +1076,7 @@ export default function Home() {
               className="w-full overflow-hidden rounded-2xl"
               style={{
                 mixBlendMode: "lighten",
-                height: "360px",        // Slightly reduced but safe
+                height: "360px",
                 maxHeight: "420px"
               }}
             >

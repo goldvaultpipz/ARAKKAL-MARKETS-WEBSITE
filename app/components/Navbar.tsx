@@ -253,7 +253,7 @@ export default function Navbar() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-6 py-0 backdrop-blur-lg shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors hover:bg-white/10"
+        className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-6 py-2 sm:py-0 backdrop-blur-lg shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors hover:bg-white/10"
       >
 
         {/* Logo */}
